@@ -1,5 +1,6 @@
-makeGrid(16);
+makeGrid(3);
 changeGridSize();
+clearItemColor();
 
 function makeGrid(num) {
   gridArea = document.getElementById('gridArea');
@@ -30,6 +31,17 @@ function changeItemColor() {
       item.className = 'selected';
     });
   });
+}
+
+function clearItemColor() {
+  button = document.getElementById('button');
+
+  button.addEventListener('click', () => {
+    gridSelectedItems = document.querySelectorAll('.selected');
+    gridSelectedItems.forEach(item => {
+      item.className = 'gridItem';
+    });
+  })
 }
 
 function changeGridSize(){
