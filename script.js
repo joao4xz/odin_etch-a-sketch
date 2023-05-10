@@ -1,20 +1,46 @@
-gridArea = document.getElementById('gridArea');
+makeGrid(16);
+changeGridSize();
 
-let num = 16;
-let size = 500/num;
+function makeGrid(num) {
+  gridArea = document.getElementById('gridArea');
 
-for(let i = 0; i < (num*num); i++){
-  div = document.createElement('div');
-  div.classList.add('gridItem');
-  div.style.width = `${size}px`;
-  div.style.height = `${size}px`;
-  gridArea.appendChild(div);
+  let size = 500 / num;
+
+  for (let i = 0; i < (num * num); i++) {
+    div = document.createElement('div');
+    div.classList.add('gridItem');
+    div.style.width = `${size}px`;
+    div.style.height = `${size}px`;
+    gridArea.appendChild(div);
+  }
+  changeItemColor();
 }
 
-gridItems = document.querySelectorAll('.gridItem');
+function removeGrid(){
+  while (gridArea.firstChild) {
+    gridArea.removeChild(gridArea.firstChild);
+  }
+}
 
-gridItems.forEach(item => {
+function changeItemColor() {
+  gridItems = document.querySelectorAll('.gridItem');
+
+  gridItems.forEach(item => {
   item.addEventListener('mouseover', () => {
-    item.className = 'selected';
+      item.className = 'selected';
+    });
   });
-});
+}
+
+function changeGridSize(){
+  let selectorText = document.getElementById('selectorText');
+  
+  let slider = document.getElementById('slider');
+
+  slider.addEventListener('input', (e) => {
+    selectorText.textContent = e.target.value;
+    num = e.target.value;
+    removeGrid();
+    makeGrid(num);
+  })
+}
