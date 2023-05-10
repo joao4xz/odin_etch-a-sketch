@@ -1,5 +1,4 @@
 gridArea = document.getElementById('gridArea');
-//div = document.createElement('div');
 
 let num = 16;
 let size = 500/num;
@@ -11,3 +10,11 @@ for(let i = 0; i < (num*num); i++){
   div.style.height = `${size}px`;
   gridArea.appendChild(div);
 }
+
+gridItems = document.querySelectorAll('.gridItem');
+
+gridItems.forEach(item => {
+  item.addEventListener('mouseover', () => {
+    item.className = 'selected';
+  });
+});
